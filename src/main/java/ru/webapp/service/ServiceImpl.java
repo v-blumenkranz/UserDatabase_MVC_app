@@ -7,26 +7,32 @@ import ru.webapp.model.User;
 import java.util.List;
 
 @Component
-public class UserService {
-    private final UserDao userDao;
+public class ServiceImpl implements ServiceDao{
+    private final UserDao userDaoImpl;
 
-    public UserService(UserDao userDao) {
-        this.userDao = userDao;
+    public ServiceImpl(UserDao userDaoImpl) {
+        this.userDaoImpl = userDaoImpl;
     }
 
-    public List<User> getUsers() {
-        return userDao.getAllUsers();
+
+    public List<User> getAll() {
+        return userDaoImpl.getAll();
     }
 
-    public void saveUser(User user) {
-        userDao.save(user);
+    public void save(User user) {
+        userDaoImpl.save(user);
     }
 
-    public User getUser(Long id){
-        return userDao.getUser(id);
+    public User getById(Long id){
+        return userDaoImpl.getById(id);
     }
 
     public void update(Long id, User user) {
-        userDao.update(id, user);
+        userDaoImpl.update(id, user);
+    }
+
+    @Override
+    public void delete(Long id) {
+        userDaoImpl.delete(id);
     }
 }
